@@ -12,6 +12,9 @@ add_executable(mergesort mergesort.cpp)
 add_executable(zijie1 zijie1.cpp)
 add_executable(haikang1 haikang1.cpp)
 add_executable(baidu1 baidu1.cpp)
+add_executable(dajiang1 dajiang1.cpp)
+add_executable(dajiang2 dajiang2.cpp)
+add_executable(dajiang3 dajiang3.cpp)
 
 
 add_executable(141 141.cpp)
