@@ -1,6 +1,5 @@
-//
-// Created by Tiana on 2022/8/2.
-//
+// 141. 环形链表
+// 快慢指针
 
 #include "utils.h"
 #include<iostream>
@@ -40,8 +39,6 @@ int main(){
 
     auto head = new ListNode(0);
     head->next = deserializeLinkedList(list);
-
-    printLinkedList(head->next);
 
     int pos = 1;
     auto p = head;

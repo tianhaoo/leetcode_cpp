@@ -1,6 +1,5 @@
-//
-// Created by Tiana on 2022/8/4.
-//
+// 104. 二叉树的最大深度
+// 待解决
 
 #include "utils.h"
 #include <iostream>
@@ -23,10 +22,14 @@ public:
 
 
 int main(){
-    vector<int> list = {3,9,20,null,null,15,7};
+    vector<int> lst = {3,9,20,null,null,15,7};
 
-    for(auto elem : list){
-        cout << elem << endl;
-    }
+    printVector(lst);
+
+    auto root = deserializeTree(lst);
+    printTree(root);
+
+    preorder(root);
+
 
 }
