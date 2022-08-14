@@ -29,7 +29,7 @@ int main(){
     auto root = deserializeTree(lst);
     printTree(root);
 
-    preorder(root);
+    preOrder(root);
 
 
 }

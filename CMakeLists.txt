@@ -16,6 +16,10 @@ add_executable(baidu1 baidu1.cpp)
 add_executable(dajiang1 dajiang1.cpp)
 add_executable(dajiang2 dajiang2.cpp)
 add_executable(dajiang3 dajiang3.cpp)
+add_executable(wangyi1 wangyi1.cpp)
+add_executable(wangyi2 wangyi2.cpp)
+add_executable(wangyi3 wangyi3.cpp)
+add_executable(wangyi4 wangyi4.cpp)
 
 # 链表
 add_executable(002 002.cpp)
