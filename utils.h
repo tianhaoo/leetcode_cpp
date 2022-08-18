@@ -13,6 +13,8 @@
 #include <iostream>
 #include <queue>
 #include <climits>
+#include <sstream>
+#include <algorithm>
 
 using namespace std;
 
@@ -21,6 +23,17 @@ using namespace std;
 // 输出vector
 template<typename T>
 void printVector(const vector<T>& lst){
+    cout << '[';
+    for(int i=0; i<lst.size(); ++i){
+        cout << lst[i];
+        if (i < lst.size()-1)
+            cout << ", ";
+    }
+    cout << ']' << endl;
+}
+
+// 输出vector int特化
+void printVector(vector<int>& lst){
     cout << '[';
     for(int i=0; i<lst.size(); ++i){
         cout << lst[i];
@@ -105,10 +118,33 @@ void postOrder(TreeNode *root){
 
 // 列表转二叉树 leetcode方式
 // 节省空间的广度优先搜索
-TreeNode* deserializeTree(const vector<int>& lst){
-    if (lst.empty()){
+TreeNode* deserializeTree(string s){
+    // 输入是逗号和空格隔开的int类型字符串
+    if (s.empty()){
         return nullptr;
     }
+    // 先删除首尾的中括号
+    if(s[0] == '[') s.erase(0, 1);
+    if(s[s.size()-1] == ']') s.erase(s.size()-1, 1);
+    // 然后删除里面的空格
+    auto new_end = remove(s.begin(), s.end(), ' ');
+    s.erase(new_end, s.end());
+    // 然后把逗号换成空格
+    replace(s.begin(), s.end(), ',', ' ');
+    // 然后把null 换成INT_MAX
+    string::size_type pos = 0;
+    while ( (pos = s.find("null"))!= string::npos ){
+        s.replace(pos, 4, "2147483647");
+        ++pos;
+    }
+    // 最后把int放进vector
+    stringstream ss(s);
+    vector<int> lst;
+    int temp;
+    while(ss >> temp){
+        lst.push_back(temp);
+    }
+
     auto root = new TreeNode(lst[0]);
     queue<TreeNode *> q;
     q.push(root);
@@ -138,14 +174,40 @@ TreeNode* deserializeTree(const vector<int>& lst){
 // 二叉树转列表 leetcode方式
 // 带null的广度优先遍历
 string serializeTree(TreeNode *root){
-    vector<int> lst;
     if (root == nullptr){
         return "[]";
     }
-
-    return "[]";
-
-
+    vector<int> lst;  // 存放结果
+    queue<TreeNode*> q;
+    q.push(root);
+    while(! q.empty()){
+        TreeNode *node = q.front();
+        q.pop();
+        if (node != nullptr){
+            lst.push_back(node->val);
+            q.push(node->left);
+            q.push(node->right);
+        }else{
+            lst.push_back(INT_MAX);
+        }
+    }
+    // 为了把后面的null都省略，从后往前找到第一个非INT_MAX的元素下标
+    vector<int>::size_type index;
+    for(index=lst.size()-1; index>=0; index--){
+        if (lst[index] != INT_MAX)
+            break;
+    }
+    string s = "[";
+    for (int i=0; i<=index; i++) {
+        if (lst[i] == INT_MAX)
+            s.append("null");
+        else
+            s.append(to_string(lst[i]));
+        if (i != index)
+            s.append(", ");
+    }
+    s.append("]");
+    return s;
 }
 
 

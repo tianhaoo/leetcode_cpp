@@ -13,23 +13,50 @@ using namespace std;
 
 
 class Solution {
+    int depth=0, max_depth=INT_MIN;
 public:
+//    void traverse(TreeNode *root){
+//        if (root != nullptr){
+//            depth ++;
+//            if(root->left == nullptr && root->right == nullptr){
+//                max_depth = max(max_depth, depth);
+//            }
+//            traverse(root->left);
+//            traverse(root->right);
+//            depth --;
+//        }
+//    }
+//
+//    int maxDepth(TreeNode* root) {
+//        if (root != nullptr){
+//            traverse(root);
+//            return max_depth;
+//        }else{
+//            return 0;
+//        }
+//
+//    }
     int maxDepth(TreeNode* root) {
-        return 0;
+        if (root == nullptr){
+            return 0;
+        }
+        int left = maxDepth(root->left);
+        int right = maxDepth(root->right);
+        return max(left, right) + 1;
+
 
     }
 };
 
 
 int main(){
-    vector<int> lst = {3,9,20,null,null,15,7};
+    string s = "[3,9,20,null,null,15,7]";
 
-    printVector(lst);
-
-    auto root = deserializeTree(lst);
+    auto root = deserializeTree(s);
     printTree(root);
 
-    preOrder(root);
-
+    auto solution = Solution();
+    int res = solution.maxDepth(root);
+    cout << res << endl;
 
 }
