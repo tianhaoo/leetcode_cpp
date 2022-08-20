@@ -15,6 +15,7 @@
 #include <climits>
 #include <sstream>
 #include <algorithm>
+#include <cmath>
 
 using namespace std;
 
@@ -211,6 +212,8 @@ string serializeTree(TreeNode *root){
 }
 
 
+
+
 // printTree的帮助函数
 void writeTree(TreeNode *root, int column){
     if (root != nullptr){
@@ -227,5 +230,9 @@ void writeTree(TreeNode *root, int column){
 void printTree(TreeNode *root){
     writeTree(root, 0);
 }
+
+
+// 图存储 邻接表
+// 图存储 邻接矩阵
 
 

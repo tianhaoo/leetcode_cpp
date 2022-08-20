@@ -27,6 +27,8 @@ add_executable(148 148.cpp)
 
 # 回溯
 add_executable(017 017.cpp)
+add_executable(046 046.cpp)
+add_executable(051 051.cpp)
 
 # 动态规划
 add_executable(322 322.cpp)
@@ -50,6 +52,7 @@ add_executable(1221 1221.cpp)
 
 # 双指针
 add_executable(344 344.cpp)
+add_executable(680 680.cpp)
 
 # 滑动窗口
 add_executable(1984 1984.cpp)
