@@ -16,6 +16,7 @@
 #include <sstream>
 #include <algorithm>
 #include <cmath>
+#include <iomanip>
 
 using namespace std;
 
@@ -40,6 +41,47 @@ void printVector(vector<int>& lst){
         cout << lst[i];
         if (i < lst.size()-1)
             cout << ", ";
+    }
+    cout << ']' << endl;
+}
+
+// 输出二维数组
+template<typename T>
+void printMatrix(const vector<vector<T>>& lst){
+    cout << '[' << endl;
+
+    for (int i = 0; i < lst.size(); ++i) {
+        vector<T> row = lst[i];
+        cout << "    [";
+        for (int j = 0; j < row.size(); ++j) {
+            cout << row[j];
+            if (j < row.size()-1)
+                cout << ", ";
+        }
+        cout << ']';
+        if (i < lst.size()-1)
+            cout << ", ";
+        cout << endl;
+    }
+    cout << ']' << endl;
+}
+
+// 输出二维数组的int特化
+void printMatrix(const vector<vector<int>>& lst){
+    cout << '[' << endl;
+
+    for (int i = 0; i < lst.size(); ++i) {
+        vector<int> row = lst[i];
+        cout << "    [";
+        for (int j = 0; j < row.size(); ++j) {
+            cout << row[j];
+            if (j < row.size()-1)
+                cout << ", ";
+        }
+        cout << ']';
+        if (i < lst.size()-1)
+            cout << ", ";
+        cout << endl;
     }
     cout << ']' << endl;
 }
@@ -234,5 +276,31 @@ void printTree(TreeNode *root){
 
 // 图存储 邻接表
 // 图存储 邻接矩阵
+
+// 打印邻接表
+void printAdjList(vector<vector<int>> graph){
+    int width = 6;
+    cout << setiosflags(ios::left) << setw(width) << "from";
+    cout << setiosflags(ios::left) << setw(width) << "->";
+    cout << setiosflags(ios::left) << setw(width) << "to";
+    cout << endl;
+    for (int i = 0; i < graph.size(); ++i) {
+        const auto lst = graph[i];
+        cout << setiosflags(ios::left) << setw(width) << i;
+        cout << setiosflags(ios::left) << setw(width) << "->";
+        cout << '[';
+        for(int j=0; j<lst.size(); ++j){
+            cout << lst[j];
+            if (j < lst.size()-1)
+                cout << ", ";
+        }
+        cout << ']' << endl;
+    }
+}
+
+
+
+
+
 
 

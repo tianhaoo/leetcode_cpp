@@ -38,6 +38,19 @@ add_executable(104 104.cpp)
 add_executable(543 543.cpp)
 add_executable(515 515.cpp)
 
+# 图
+add_executable(797 797.cpp)
+add_executable(207 207.cpp)
+add_executable(210 210.cpp)
+add_executable(785 785.cpp)
+add_executable(886 886.cpp)
+add_executable(130 130.cpp)
+add_executable(323 323.cpp)
+
+# 并查集
+add_executable(990 990.cpp)
+add_executable(261 261.cpp)
+
 # 二分查找
 add_executable(153 153.cpp)
 

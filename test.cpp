@@ -11,10 +11,14 @@ using namespace std;
 
 int main(){
 
-    string s1 = "3,9,20,null,null,15,7";
-    auto p = s1.find("null");
-    cout << p << endl;
-
+    vector<vector<int>> lst = {
+            {1, 2, 3},
+            {1, 2, 3},
+            {1},
+            {1, 2, 3},
+            {4,4,4,4,4,4,4,4,4,4,9}
+    };
+    printAdjList(lst);
 
 
 
