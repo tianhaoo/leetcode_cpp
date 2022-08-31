@@ -54,10 +54,21 @@ add_executable(130 130.cpp)
 add_executable(323 323.cpp)
 add_executable(1135 1135.cpp)
 add_executable(1584 1584.cpp)
+add_executable(743 743.cpp)
+add_executable(277 277.cpp)
 
 # 并查集
 add_executable(990 990.cpp)
 add_executable(261 261.cpp)
+
+# 前缀树 字典树
+
+# 单调栈
+add_executable(496 496.cpp)
+add_executable(739 739.cpp)
+
+# 单调队列
+add_executable(239 239.cpp)
 
 # 二分查找
 add_executable(153 153.cpp)

@@ -3,11 +3,10 @@
 //
 
 
-// 选择一个基于头文件名的防护符，这个简单的防护符会确保在一个工程中头文件名总是相互独立的。
-// 按照惯例这个防护符是全部大写的。比如Geometry_base.h文件中就应当以如下内容开头：
+
 #ifndef LEETCODE_CPP_UTILS_H
 #define LEETCODE_CPP_UTILS_H
-#endif //LEETCODE_CPP_UTILS_H
+
 
 #include <vector>
 #include <iostream>
@@ -300,7 +299,7 @@ void printAdjList(vector<vector<int>> graph){
 
 
 
-
+#endif //LEETCODE_CPP_UTILS_H
 
 
 
