@@ -2,37 +2,33 @@
 #include <queue>
 #include <vector>
 #include <iostream>
+#include <cmath>
+#include "utils.h"
+using namespace std;
 
-template<typename T> void print_queue(T& q) {
-    while(!q.empty()) {
-        std::cout << q.top() << " ";
-        q.pop();
+
+
+
+
+bool isPrime(int x) {
+    for(int y=2; y<=sqrt(x); y++) {
+        if (x % y == 0)
+            return false;
     }
-    std::cout << '\n';
+    return true;
 }
 
+
 int main() {
-    std::priority_queue<int> q;
 
-    for(int n : {1,8,5,6,3,4,0,9,7,2})
-        q.push(n);
+    vector<int> lst;
+    for(int i=2; i<1000000; ++i){
+        if(isPrime(i)){
+            lst.push_back(i);
+        }
+    }
+    printVector(lst);
 
-    print_queue(q);
 
-    std::priority_queue<int, std::vector<int>, std::greater<int> > q2;
-
-    for(int n : {1,8,5,6,3,4,0,9,7,2})
-        q2.push(n);
-
-    print_queue(q2);
-
-    // 用 lambda 比较元素。
-    auto cmp = [](int left, int right) { return (left ^ 1) < (right ^ 1); };
-    std::priority_queue<int, std::vector<int>, decltype(cmp)> q3(cmp);
-
-    for(int n : {1,8,5,6,3,4,0,9,7,2})
-        q3.push(n);
-
-    print_queue(q3);
-
+    return 0;
 }

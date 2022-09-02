@@ -6,8 +6,10 @@ set(CMAKE_CXX_STANDARD 11)
 add_executable(leetcode_cpp main.cpp)
 
 add_executable(test test.cpp)
+add_executable(templates templates.cpp)
 add_executable(quicksort quicksort.cpp)
 add_executable(mergesort mergesort.cpp)
+add_executable(m1604 m1604.cpp)
 
 # 面试题
 add_executable(zijie1 zijie1.cpp)
@@ -23,6 +25,8 @@ add_executable(weiruan1 weiruan1.cpp)
 add_executable(weiruan2 weiruan2.cpp)
 add_executable(weiruan3 weiruan3.cpp)
 add_executable(weiruan4 weiruan4.cpp)
+add_executable(bilibili1 bilibili1.cpp)
+add_executable(bilibili2 bilibili2.cpp)
 
 # 链表
 add_executable(002 002.cpp)
@@ -37,6 +41,7 @@ add_executable(051 051.cpp)
 # 动态规划
 add_executable(322 322.cpp)
 add_executable(198 198.cpp)
+add_executable(300 300.cpp)
 
 
 # 二叉树
@@ -91,6 +96,9 @@ add_executable(042 042.cpp)
 # 滑动窗口
 add_executable(1984 1984.cpp)
 add_executable(076 076.cpp)
+
+# 搜索
+add_executable(756 756.cpp)
 
 
 

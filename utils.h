@@ -16,8 +16,21 @@
 #include <algorithm>
 #include <cmath>
 #include <iomanip>
+#include <windows.h>
 
 using namespace std;
+
+class MyTimer{
+public:
+    DWORD t1,t2;
+    MyTimer(){
+        t1 = GetTickCount();
+    }
+    ~MyTimer(){
+        t2 = GetTickCount();
+        cout<<"time = "<<((t2-t1)*1.0/1000)<<endl;  //输出时间（单位：ｓ）
+    }
+};
 
 
 
