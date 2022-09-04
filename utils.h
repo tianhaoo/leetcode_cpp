@@ -28,7 +28,7 @@ public:
     }
     ~MyTimer(){
         t2 = GetTickCount();
-        cout<<"time = "<<((t2-t1)*1.0/1000)<<endl;  //输出时间（单位：ｓ）
+        cout <<"time = " << ((t2-t1)*1.0) << " ms" << endl;
     }
 };
 
