@@ -8,8 +8,9 @@
 #include <string>
 #include <algorithm>
 #include <unordered_map>
-#include "../utils.h"
-#include <windows.h>
+#include <queue>
+// #include "../utils.h"
+// #include <windows.h>
 
 using namespace std;
 
@@ -111,9 +112,9 @@ int main() {
     auto solution = Solution();
 
 
-    auto mt = MyTimer();
+    // auto mt = MyTimer();
     auto res = solution.pyramidTransition(bottom, allowed);
-    // cout << res << endl;
+    cout << res << endl;
 
 
 
