@@ -4,71 +4,45 @@
 #include <vector>
 #include <algorithm>
 #include <unordered_set>
+#include <map>
+#include <unordered_map>
 
 using namespace std;
 
-struct Node{
-    char c;
-    int id;
-    Node(){
-        c = 'a';
-        id = 0;
-    }
-    Node(char a, int i){
-        c = a;
-        id = i;
-    }
+auto cmp = [](TreeNode *a, TreeNode *b){
+    return a->val < b->val;
 };
 
 
-string traverse(vector<vector<Node>> &graph, Node node, vector<int> &ans){
-
-    string res;
-    for(auto neighbour: graph[node.id]){
-        string neiRes = traverse(graph, neighbour, ans);
-        res += neiRes;
+void traverse(TreeNode *root, int parent, unordered_map<TreeNode*, int> &memo){
+    if(root != nullptr){
+        cout << root->val << ", " << parent << endl;
+        memo[root] = parent;
+        traverse(root->left, root->val, memo);
+        traverse(root->right, root->val, memo);
     }
-    res.push_back(node.c);
-    unordered_set<char> s(res.begin(), res.end());
-    ans[node.id] = s.size();
-    return res;
-
 }
 
 
+void printMap(unordered_map<TreeNode*, int> m){
+    for (const auto &item: m) {
+        cout << item.first << ", " << item.second << endl;
+    }
+}
+
 
 int main(){
-    int n;
-    while(cin >> n){
-        vector<vector<Node>> graph(n+1, vector<Node>());
-        vector<int> parents(n+1);
-        for(int i=2; i<n+1; ++i){
-            cin >> parents[i];
-        }
-        string letters;
-        cin >> letters;
-        for(int i=2; i<n+1; ++i){
-            graph[parents[i]].emplace_back(letters[i-1], i);
-        }
-        vector<int> ans(n+1);
-        traverse(graph, Node(letters[0], 1), ans);
-        for(int i=1; i<ans.size();++i){
-            cout << ans[i];
-            if(i !=n){
-                cout << ' ';
-            }
-        }
-        cout <<endl;
+    string s = "[3,2,3,null,3,null,1]";
+    TreeNode* root = deserializeTree(s);
+
+    printTree(root);
 
 
+    unordered_map<TreeNode*, int> memo;  // 存储每个二叉树节点的父节点
+    traverse(root, INT_MAX, memo);
+
+    printMap(memo);
 
 
-
-
-
-
-
-
-    }
     return 0;
 }

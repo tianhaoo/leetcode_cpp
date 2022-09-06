@@ -30,6 +30,10 @@ struct State{
     }
 };
 
+bool cmp(State &a, State &b){
+    return a.distFromStart > b.distFromStart;
+}
+
 
 class Solution {
 public:
@@ -42,8 +46,8 @@ public:
         }
         vector<int> distanceFromStartTo(n, 0);
         // 广度优先遍历，同时记录从节点k到每个节点的最短路径
-        auto cmp = [](State &a, State &b){return a.distFromStart > b.distFromStart;};
-        priority_queue<State, vector<State>, decltype(cmp)> pq(cmp);
+        // auto cmp = [](State &a, State &b){return a.distFromStart > b.distFromStart;};
+        priority_queue<State, vector<State>, decltype(cmp)*> pq(cmp);
         pq.push(State(k-1, 0));
         distanceFromStartTo[k-1] = 0;
         while(!pq.empty()){

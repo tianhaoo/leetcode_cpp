@@ -1,9 +1,3 @@
-//
-// Created by Tiana on 2022/8/2.
-//
-
-
-
 #ifndef LEETCODE_CPP_UTILS_H
 #define LEETCODE_CPP_UTILS_H
 
@@ -19,6 +13,38 @@
 #include <windows.h>
 
 using namespace std;
+
+
+
+
+// debug递归函数
+#define TIAN 1
+#if (TIAN > 0)
+#define DECLARE_PRINT \
+    int count_ = 0; \
+    void printIndent(int n) { \
+        for (int i = 0; i < n; i++) { \
+            cout << "   "; \
+        } \
+    }
+#define PRINT_PARAM(p1, p2) \
+    printIndent(count_++); \
+    cout \
+    << "p1 = " << p1 << ", " \
+    << "p2 = " << p2 << ", " \
+    << endl;
+#define PRINT_RES(res) \
+    printIndent(--count_); \
+    cout \
+    << "return " << res \
+    << endl;
+#else
+#define  DECLARE_PRINT
+#define PRINT_PARAM(p1, p2)
+#define PRINT_RES(res)
+#endif
+
+
 
 class MyTimer{
 public:
