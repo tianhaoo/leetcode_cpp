@@ -9,39 +9,41 @@
 
 using namespace std;
 
-auto cmp = [](TreeNode *a, TreeNode *b){
-    return a->val < b->val;
-};
-
-
-void traverse(TreeNode *root, int parent, unordered_map<TreeNode*, int> &memo){
-    if(root != nullptr){
-        cout << root->val << ", " << parent << endl;
-        memo[root] = parent;
-        traverse(root->left, root->val, memo);
-        traverse(root->right, root->val, memo);
+// 分割字符串
+// path 字符串数组
+// res 二维字符串数组
+void dfs(vector<vector<string>> &res, vector<string> &path, string &s, int start){
+    if(start >= s.size()){
+        res.push_back(path);
+        return;
     }
-}
-
-
-void printMap(unordered_map<TreeNode*, int> m){
-    for (const auto &item: m) {
-        cout << item.first << ", " << item.second << endl;
+    for(int i : {1, 2}){
+        if(i == 1){
+            path.emplace_back(1, s[start]);
+            dfs(res, path, s, start+1);
+            path.pop_back();
+        }
+        if(i==2 && start <= s.size()-2){
+            path.push_back(s.substr(start, 2));
+            dfs(res, path, s, start+2);
+            path.pop_back();
+        }
     }
+
+
+
 }
 
 
 int main(){
-    string s = "[3,2,3,null,3,null,1]";
-    TreeNode* root = deserializeTree(s);
 
-    printTree(root);
+    string s = "1234";
+    vector<vector<string>> res;
+    vector<string> path;
+    dfs(res, path, s, 0);
+    printMatrix<string>(res);
 
 
-    unordered_map<TreeNode*, int> memo;  // 存储每个二叉树节点的父节点
-    traverse(root, INT_MAX, memo);
-
-    printMap(memo);
 
 
     return 0;

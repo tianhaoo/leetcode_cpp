@@ -1,4 +1,9 @@
-//
+// 任意两数之和为偶数
+
+
+
+#include "../utils.h"
+
 
 
 #include <iostream>
@@ -13,12 +18,21 @@
 #include <deque>
 #include <stack>
 #include <random>
-#include "../utils.h"
 
 using namespace std;
 
 
 int main() {
+    int n;
+    while (cin >> n){
+        vector<int> lst(n);
+        for(int i=0; i<n; ++i){
+            cin >> lst[i];
+        }
+        int res=0;
+
+        cout << res << endl;
+    }
 
     return 0;
 }
