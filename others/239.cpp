@@ -12,11 +12,37 @@
 
 using namespace std;
 
-
 class Solution {
 public:
+    deque<int> q;  // 队列里面放的是下标
     vector<int> maxSlidingWindow(vector<int>& nums, int k) {
-        return {};
+        vector<int> res;
+
+        for(int i=0; i<k; i++){
+            while(!q.empty() && nums[q.back()] < nums[i]){
+                q.pop_back();
+            }
+            q.push_back(i);
+        }
+        res.push_back(nums[q.front()]);
+
+        int head=0;
+        for(int tail=k; tail<nums.size(); tail++){
+            // 先入队
+            while(!q.empty() && nums[q.back()] < nums[tail]){
+                q.pop_back();
+            }
+            q.push_back(tail);
+
+            // 再出队
+            if(q.front() == head){
+                q.pop_front();
+            }
+            head ++;
+
+            res.push_back(nums[q.front()]);
+        }
+        return res;
     }
 };
 

@@ -45,7 +45,7 @@ int main() {
     vector<vector<long long>> edges = {{0,1,3},{1,2,1},{1,3,4},{2,3,1}};
 
     // 用long long 存,这样INTMAX加起来的时候就不会溢出
-    vector<vector<long long>> dis(n, vector<long long>(n, INT_MAX));
+    vector<vector<long long>> dis(n, vector<long long>(n, INT_MAX));  // 存放每个节点到其他节点的最短距离
     // 根据已知的weight更新已知的最短路径长度.
     for (int i = 0; i < n; ++i) {
         dis[i][i] = 0;

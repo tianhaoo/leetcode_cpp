@@ -1,9 +1,8 @@
 // dijkstra最短路径算法
 // 求从一个起点到n个终点的最短路径
 // 利用贪心思想, 每次选比较短的边
-// 时间复杂度v^2,
+// 时间复杂度 使用优先队列 优化至e+vlogv
 // 不适用于权重有负数的情况
-//
 
 
 
@@ -39,10 +38,7 @@ void path(vector<int> &middle, int to){
     }
     printf("%d ", to);
     path(middle, middle[to]);
-
-
 }
-
 
 
 
@@ -63,32 +59,44 @@ int main() {
     int from = 0;  // 指定起始点
 
     vector<int> dis(n, INT_MAX);  // 记录从from到所有点的最短距离
-    unordered_set<int> s, u;
+    unordered_set<int> s;
     // 先都放在u里，s是空集
-    for (int i = 0; i < n; ++i) {
-        u.insert(i);
-    }
+
+    auto cmp = [dis](Edge &a, Edge &b){
+        return dis[a.to] > dis[b.to];
+    };
+
 
     dis[from] = 0; // 自己到自己的距离为0
     s.insert(from);
-    u.erase(from);
 
     // 先把from到邻接点的最短距离更新一下
     for(auto e:graph[from]){
         dis[e.to] = e.weight;
     }
 
+
+    priority_queue<pair<int, int>> u;
+    // 把from的邻接点放进优先队列
+    for(auto e:graph[from]){
+        u.push(make_pair(dis[e.to], e.to));
+    }
+
     vector<int> middle(n, -1); // 记录中间节点
 
     while(!u.empty()){
         // 找到u里距离from最近的点
-        int d=INT_MAX, st=0;
-        for(auto v:u){
-            if(d >= dis[v]){
-                d = dis[v];
-                st = v;
-            }
-        }
+        // 这里使用优先队列进行优化
+        // int d=INT_MAX, st=0;
+        // for(auto v: u){
+        //     if(d >= dis[v]){
+        //         d = dis[v];
+        //         st = v;
+        //     }
+        // }
+        auto temp = u.top();
+        u.pop();
+        int d = temp.first, st = temp.second;
 
         // 将最短的路 的目的点 作为中间点，更新dis数组, 只能更新st的邻接点
         for(auto e:graph[st]){
@@ -98,12 +106,13 @@ int main() {
                 dis[e.to] = p1;
                 middle[e.to] = st;
             }
-        }
+            if(!s.count(e.to)){
+                u.push(make_pair(dis[e.to], e.to));
+            }
 
+        }
         // 将st加入s
         s.insert(st);
-        u.erase(st);
-
 
     }
 
