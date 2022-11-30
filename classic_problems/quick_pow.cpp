@@ -38,6 +38,7 @@ int quickpow(int a, int n){
     return res;
 }
 
+// 带模数的快速幂
 int quickpow(int a, int n, int p){
     int res = 1;
     while(n){
